@@ -39,6 +39,11 @@ class player(rectangle):
 leftrok = player('left.png', 625, 150, 5, 70, 150)
 rightrok = player('right.png', 0, 150, 5, 70, 150)
 
+ball = rectangle('bI.png', 350, 250, 3, 70, 90)
+
+speedx = 3
+speedy = 3
+
 
 
 while game:
@@ -52,6 +57,13 @@ while game:
         leftrok.update_left()
         rightrok.reset()
         rightrok.update_right()
+        ball.rect.x += speedx
+        ball.rect.y += speedy
+        if ball.rect.y > 415 or ball.rect.y < 0:
+            speedy *= -1
+        if sprite.collide_rect(ball, rightrok) or sprite.collide_rect(ball, leftrok):
+            speedx *= -1
+        ball.reset()
 
         
 
