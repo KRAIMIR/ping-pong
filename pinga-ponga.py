@@ -1,4 +1,5 @@
 from pygame import *
+font.init()
 
 windows = display.set_mode((700, 500))
 display.set_caption('пугаме виндоу')
@@ -65,7 +66,16 @@ while game:
             speedx *= -1
         ball.reset()
 
-        
+    if ball.rect.x > 600:
+        final = True
+        font2 = font.SysFont('Arial', 30).render('игрок 1 вигарл', True, (250, 100, 255))
+        windows.blit(font2, (200, 200))
+
+    if ball.rect.x < 50:
+        final = True
+        font1 = font.SysFont('Arial', 30).render('игрок 2 вигарл', True, (250, 100, 255))
+        windows.blit(font1, (200, 200))
+
 
     display.update()
     clock.tick(60)
